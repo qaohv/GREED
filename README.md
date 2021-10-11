@@ -16,7 +16,7 @@ To predict scores for LIVE VQA dataset run following command:
 make -f live-vqa-bench.make run
 ```
 
-To predict scores for CSIQ dataset run following command"
+To predict scores for CSIQ dataset run following command:
 
 ```
 make -f csiq-bench.make run
@@ -32,5 +32,5 @@ python3 calculate_metrics.py --gt-csv <path-to-csv-with-gt> --predicted-scores-p
 For example:
 
 ```
-python3 calculate_metrics.py --gt-csv csv/csiq/csiq-dmos.csv --predicted-scores-path csiq.log
+python3 calculate_metrics.py --gt-csv csv/csiq-dmos.csv --predicted-scores-path csiq.log
 ```
