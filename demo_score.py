@@ -37,7 +37,8 @@ def main(args):
     
     #Predict score
     score,_,_ = svm_predict([0.0], GREED_feat[None,:], model,'-q')
-    print(score)
+    print(score[0])
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -64,3 +65,6 @@ def parse_args():
 if __name__ == '__main__':
     args = parse_args()
     main(args)
+
+
+#  python3 demo_score.py --ref_path /datasets/live-vqa/yuv/ref/pa1_25fps.yuv --dist_path /datasets/live-vqa/yuv/dis/pa9_25fps.yuv --ref_fps 25 --dist_fps 25 --height 432 --width 768
