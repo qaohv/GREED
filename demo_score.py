@@ -4,6 +4,7 @@ from libsvm.svmutil import svm_predict, svm_load_model
 import scipy.io
 from GREED_feat import greed_feat
 
+
 def main(args):
     ref_path = args.ref_path
     
@@ -26,9 +27,14 @@ def main(args):
     os.system(cmd)
     
     GREED_feat = greed_feat(args)
-    
+
     #load svm model
-    model = svm_load_model('model_params/' + args.temp_filt + '.model')
+    if args.height < 1080:
+        #low resolution model
+        model = svm_load_model('model_params/' + args.temp_filt + '_lowres.model')
+    else:
+        #high resolution model
+        model = svm_load_model('model_params/' + args.temp_filt + '.model')
     
     #load parameter of trained features
     feat_param = scipy.io.loadmat('model_params/' + args.temp_filt + '_params.mat')
@@ -62,9 +68,7 @@ def parse_args():
     args = parser.parse_args()
     return args
 
+
 if __name__ == '__main__':
     args = parse_args()
     main(args)
-
-
-#  python3 demo_score.py --ref_path /datasets/live-vqa/yuv/ref/pa1_25fps.yuv --dist_path /datasets/live-vqa/yuv/dis/pa9_25fps.yuv --ref_fps 25 --dist_fps 25 --height 432 --width 768
